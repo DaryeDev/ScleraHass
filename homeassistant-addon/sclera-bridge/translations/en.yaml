@@ -1,0 +1,25 @@
+configuration:
+  sclera_ws_url:
+    name: Sclera WebSocket URL
+    description: WebSocket endpoint for your Sclera server (e.g. wss://apisclera.darye.dev/api/ws).
+  sclera_frontend_url:
+    name: Sclera frontend URL
+    description: Used in logs to show the pairing link after first start.
+  device_name:
+    name: Hub name in Sclera
+    description: Display name for this Home Assistant bridge in the Sclera portal.
+  include_domains:
+    name: Include domains
+    description: If set, only entities from these HA domains are synced (e.g. light, switch).
+  exclude_domains:
+    name: Exclude domains
+    description: Skip entities from these HA domains (e.g. update, device_tracker).
+  exclude_entities:
+    name: Exclude entities
+    description: Skip specific entity_ids (e.g. sensor.cpu_temperature).
+  sync_interval_seconds:
+    name: Full resync interval (seconds)
+    description: Periodic full catalog resync as a safety net (30–3600).
+  log_level:
+    name: Log level
+    description: debug, info, warn, or error.

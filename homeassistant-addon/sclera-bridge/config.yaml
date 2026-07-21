@@ -1,0 +1,34 @@
+name: Sclera Bridge
+version: "1.0.0"
+slug: sclera_bridge
+description: >-
+  Connect Home Assistant devices, entities, and helpers to Sclera as a Hub with
+  subdevices, actions, and state-change events.
+arch:
+  - amd64
+  - aarch64
+startup: application
+boot: auto
+homeassistant_api: true
+init: false
+options:
+  sclera_ws_url: wss://apisclera.darye.dev/ws
+  sclera_frontend_url: https://sclera.darye.dev
+  device_name: Home Assistant
+  include_domains: []
+  exclude_domains: []
+  exclude_entities: []
+  sync_interval_seconds: 300
+  log_level: info
+schema:
+  sclera_ws_url: url
+  sclera_frontend_url: url
+  device_name: str
+  include_domains:
+    - str
+  exclude_domains:
+    - str
+  exclude_entities:
+    - str
+  sync_interval_seconds: int(30,3600)
+  log_level: list(debug|info|warn|error)
