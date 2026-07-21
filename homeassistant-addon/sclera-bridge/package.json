@@ -1,6 +1,6 @@
 {
   "name": "sclera-bridge-addon",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "type": "module",
   "private": true,
   "description": "Home Assistant addon bridging entities to Sclera",
