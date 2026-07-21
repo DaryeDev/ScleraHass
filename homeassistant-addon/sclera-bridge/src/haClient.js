@@ -183,6 +183,10 @@ export class HaClient {
     return this.#send("config/area_registry/list");
   }
 
+  async getServices() {
+    return this.#send("get_services");
+  }
+
   async callService(domain, service, target = {}, serviceData = {}) {
     const msg = { domain, service };
     if (Object.keys(target).length > 0) msg.target = target;

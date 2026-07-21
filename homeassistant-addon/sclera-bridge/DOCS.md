@@ -70,12 +70,14 @@ Credentials are stored in `/data/sclera_client_config.json` inside the addon and
 |-----------|----------------|
 | `light` | `turn_on`, `turn_off`, `toggle` (+ brightness/color params) |
 | `switch`, `input_boolean` | `turn_on`, `turn_off`, `toggle` |
-| `climate` | `set_temperature`, `set_hvac_mode` |
+| `climate` | `turn_on`, `turn_off`, `set_temperature`, `set_hvac_mode`, `set_fan_mode` |
 | `lock` | `lock`, `unlock`, `open` |
 | `input_number`, `input_text` | `set_value` |
 | `input_select` | `select_option` |
 | `counter` | `increment`, `decrement`, `reset` |
-| *all entities* | `call_service` (generic fallback) |
+| `media_player` | `turn_on`, `turn_off`, play/pause/stop, next/previous track, volume, mute, select source |
+| Other domains with HA services | Auto-generated from Home Assistant service catalog (e.g. `humidifier`, `camera`) |
+| Read-only domains (e.g. `sensor`) | `call_service` fallback only |
 
 Invoke from Sclera as:
 
@@ -115,7 +117,7 @@ The addon uses Home Assistant's **Supervisor API proxy** — no Long-Lived Acces
 | HA auth failed | Supervisor token issue — restart Supervisor or the addon. |
 | Pairing code not shown | Check addon logs at **info** level; ensure Sclera WS URL is reachable. |
 | Entity missing in Sclera | Check exclude filters; invalid `entity_id` characters are skipped. |
-| Actions fail | Check HA logs; use `call_service` action for unsupported domains. |
+| Actions fail | Check HA logs; for read-only entities use `call_service`; curated/auto actions cover most domains. |
 
 ## Development (local)
 

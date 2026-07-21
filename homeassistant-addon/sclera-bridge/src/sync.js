@@ -1,5 +1,6 @@
 import { Event, EventPayloadVariable } from "@sclera/sdk";
 import { buildEntityContexts, createSubdeviceFromEntity } from "./subdeviceFactory.js";
+import { setServicesCatalog } from "./mapping.js";
 import { log } from "./logger.js";
 
 export const stateChangedEvent = new Event("state_changed")
@@ -41,12 +42,16 @@ export class SyncEngine {
     const { haClient, hub } = this.#opts;
     log.info("Starting full HA → Sclera sync…");
 
-    const [states, entityRegistry, deviceRegistry, areaRegistry] = await Promise.all([
-      haClient.getStates(),
-      haClient.getEntityRegistry(),
-      haClient.getDeviceRegistry(),
-      haClient.getAreaRegistry(),
-    ]);
+    const [states, entityRegistry, deviceRegistry, areaRegistry, servicesCatalog] =
+      await Promise.all([
+        haClient.getStates(),
+        haClient.getEntityRegistry(),
+        haClient.getDeviceRegistry(),
+        haClient.getAreaRegistry(),
+        haClient.getServices(),
+      ]);
+
+    setServicesCatalog(servicesCatalog);
 
     const contexts = buildEntityContexts(
       entityRegistry,
